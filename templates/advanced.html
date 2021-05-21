@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+         <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='mainpage.css') }}">
+
+    <meta charset="UTF-8">
+    <title>Advanced</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">SMS APP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/single">Simple</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/many">To Many</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/messages" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Database
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <li><a class="dropdown-item" href="/messages">TO Messages</a></li>
+            <li><a class="dropdown-item" href="/rcv">Run Recieve</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/advanced">Advanced</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rcvrs" tabindex="-1" >Recievers</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<h2>Advanced Options</h2>
+
+<p>you can select here</p>
+    <form action="/ad_send" method="POST" class="form_single">
+        <p>
+    <table style="text-align:center;">
+        <tr><td>Username:</td><td><input type="text" name="uname2"></td></tr>
+        <tr><td>password:</td><td><input type="password" name="pwd2"></td></tr>
+        <tr><td>SMS:</td><td colspan=2> <input type="tel" name="message"><br></td></tr>
+         <tr><td>Recievers:</td><td colspan=2>
+             <select id="numbers" name="numbers" class="" multiple>
+              {% for o in headings %}
+              <option value="{{ o[0] }}">{{ o[0] }}</option>
+              {% endfor %}
+            </select><br>
+             <br></td></tr>
+        <tr><td colspan 3>
+            <input type="radio" id="SMPP" name="options2" value="SMPP">SMPP
+            <input type="radio" id="REST Api" name="options2" value="REST Api">REST Api
+            <input type="radio" id="HTTP" name="options2" value="HTTP">HTTP Api
+    			</td></tr>
+    </table>
+                <input type="submit" value="Send">
+    </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
