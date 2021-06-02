@@ -10,7 +10,7 @@ import smpplib.gsm
 import smpplib.client
 import smpplib.consts
 
-import sqlconnector as sql
+# import sqlconnector as sql
 import service
 
 client = smpplib.client.Client('0.0.0.0', 2775)
@@ -22,7 +22,7 @@ def send_to_jasmin_smpp_server(sender, reciver, message):
 
     parts, encoding_flag, msg_type_flag = smpplib.gsm.make_parts(message * 10)
 
-    client = smpplib.client.Client('0.0.0.0', 2775)
+    client = smpplib.client.Client('10.99.101.246', 2775)
 
     client.set_message_sent_handler(
         lambda pdu: sys.stdout.write('sent {} {}\n'.format(pdu.sequence, pdu.message_id)))
@@ -31,7 +31,7 @@ def send_to_jasmin_smpp_server(sender, reciver, message):
         lambda pdu: sys.stdout.write('delivered {}\n'.format(pdu.receipted_message_id)))
 
     client.connect()
-    client.bind_transceiver(system_id='kk', password='kk')
+    client.bind_transceiver(system_id='rekik', password='rekik')
 
     for part in parts:
         pdu = client.send_message(
@@ -71,7 +71,7 @@ def bind_client():
         lambda pdu: sys.stdout.write('sent {}\n'.format(pdu.receipted_message_id)))
 
     client.connect()
-    client.bind_transceiver(system_id='trial', password='trial')
+    client.bind_transceiver(system_id='rekik', password='rekik')
     client.listen()
     t = Thread(target=client.listen, args=())
     t.daemon = True
@@ -100,3 +100,5 @@ def send_mssg(message, sender, reciver):
             esm_class=msg_type_flag,
             registered_delivery=True,
         )
+
+# send_to_jasmin_smpp_server("+23434", "+#43434","")

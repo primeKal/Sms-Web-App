@@ -35,8 +35,8 @@ def send_same_message_to_many(uname, pwd, message, numlist):
     }
     for num in numlist:
         payload.get("messages")[0].get("to").append(num)
-    payload.get("messages")[0].__setitem__("contents", message)
-    print(payload)
+    payload.get("messages")[0].__setitem__("content", message)
+    print("payload is " + str(payload))
     response = requests.post(url, headers=header, json=payload)
     print(response.status_code)
     print(response.text)
